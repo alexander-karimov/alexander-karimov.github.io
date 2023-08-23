@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --transition: 3s cubic-bezier(0.05, 0.5, 0, 1);
+    --myphoto-size: calc(var(--index) * 10);
+}
+
+@font-face {
+    font-family: kamerik-3d;
+    src: url(/fonts/kamerik205-heavy.woff2);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: marriwether-italic-3d;
+    src: url(/fonts/merriweather-regular-italic.woff2);
+    font-weight: 300;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: kamerik-3d;
+}
+
+.myphoto {
+    width: calc(var(--myphoto-size) * 0.9);
+    height: calc(var(--myphoto-size) * 0.9);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    left: calc(50% - calc(var(--myphoto-size) / 2));
+    top: calc(var(--index) * 2.8);
+    z-index: 1;
+    position: absolute;
+}
+
+.layers {
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.layers__container {
+    height: 100vh;
+    min-height: 500px;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+    will-change: transform;
+    transition: transform var(--transition);
+}
+
+.layers__item {
+    position: absolute;
+    inset: -5vw;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer-1 {
+    transform: translateZ(-50px) scale(1.06);
+}
+
+.layer-2 {
+    transform: translateZ(180px) scale(0.8);
+}
+
+.hero-content {
+    font-size: calc(var(--index) * 2);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: calc(var(--index) * -0.15);
+    line-height: 1.35em;
+    margin-top: calc(var(--index) * 5.5);
+}
+
+.hero-content span {
+    display: block;
+}
+
+.hero-content__p {
+    margin-top: 1em;
+    text-transform: none;
+    font-family: marriwether-italic-3d;
+    letter-spacing: normal;
+    font-size: calc(var(--index) * 1);
+    line-height: 2;
+    word-break: break-word;
+    text-decoration: none;
+    color: white;
+}
+
+.layer-1,
+.layer-2 {
+    pointer-events: none;
+}
+
+.link {
+    text-transform: none;
+    font-family: marriwether-italic-3d;
+    letter-spacing: normal;
+    font-size: calc(var(--index) * 0.7);
+    line-height: 2;
+    word-break: break-word;
+    text-decoration: none;
+    color: white;
+    pointer-events: all;
+}
